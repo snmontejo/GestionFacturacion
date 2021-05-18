@@ -24,6 +24,10 @@ namespace GestionFacturacion.Controllers
         {
             try
             {
+                if (despacho == null)
+                {
+                    throw new Exception("Todos los Campos son Obligatorios");
+                }
                 context.Despachos.Add(despacho);
                 context.SaveChanges();
                 return Ok("Despacho  Registrado Con Exito");

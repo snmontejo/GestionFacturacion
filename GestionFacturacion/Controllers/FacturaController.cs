@@ -42,15 +42,24 @@ namespace GestionFacturacion.Controllers
         {
             try
             {
+                if (factura == null)
+                {
+                    throw new Exception("Todos los Campos son Obligatorios");
+                }
+                var Pedido = context.CabPedido.FirstOrDefault(t => t.id == factura.idPedido);
+                if(Pedido==null)
+                {
+                    throw new Exception("Pedido Inexistente");
+                }
                 var TotalFactura = context.DetallePedido.Where(p => p.idPedido == factura.idPedido).ToList().Sum(t=> t.precioUnitario*t.cantidad);
                 factura.totalFactura = TotalFactura;
                 factura.fecha = DateTime.Now;
                 context.Factura.Add(factura);
                 context.SaveChanges();
                 return Ok("Factura Nro "+ factura .id+ " Registrada Con Exito");
-            }catch
+            }catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
 
