@@ -1,6 +1,6 @@
-# Título del Proyecto
+# Gestion Facturacion
 
-_Acá va un párrafo que describa lo que es el proyecto_
+El presente proyecto registra un pedido , una factura y genera el despacho de lo facturado.
 
 ## Comenzando 🚀
 
